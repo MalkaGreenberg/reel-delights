@@ -6,6 +6,7 @@ import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <LandingPage />
+    {/* this is temporary, until we set up App.jsx */}
+    <LandingPage />  
   </React.StrictMode>,
 )
