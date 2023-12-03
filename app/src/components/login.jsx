@@ -4,6 +4,7 @@ const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -17,8 +18,13 @@ const Login = () => {
     setRememberMe(!rememberMe);
   };
 
+  const handleTogglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Add login logic here
   };
 
   return (
@@ -32,7 +38,13 @@ const Login = () => {
         <br />
         <label>
           Password:
-          <input type="password" value={password} onChange={handlePasswordChange} placeholder='Enter at least 8+ characters'/>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            value={password}
+            onChange={handlePasswordChange}
+            placeholder='Enter at least 8+ characters'
+          />
+          <span onClick={handleTogglePassword}>{showPassword ? '🙈' : '👁️'}</span>
         </label>
         <br />
         <label>
