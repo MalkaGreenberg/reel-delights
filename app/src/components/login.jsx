@@ -18,16 +18,16 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Login Page</h2>
+      <h2>Sign in</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Username:
-          <input type="text" value={username} onChange={handleUsernameChange} />
+          <input type="text" value={username} onChange={handleUsernameChange} placeholder='example@email.com'/>
         </label>
         <br />
         <label>
           Password:
-          <input type="password" value={password} onChange={handlePasswordChange} />
+          <input type="password" value={password} onChange={handlePasswordChange} placeholder='Enter at least 8+ characters'/>
         </label>
         <br />
         <button type="submit">Login</button>
