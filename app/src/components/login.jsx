@@ -44,6 +44,15 @@ const Login = () => {
         <br />
         <button type="submit">Login</button>
       </form>
+
+      <p>Or sign in with</p>
+      <div>
+        <a href="/auth/google">Sign in with Google</a>
+        <br />
+        <a href="/auth/facebook">Sign in with Facebook</a>
+        <br />
+        <a href="/auth/apple">Sign in with Apple</a>
+      </div>
     </div>
   );
 };
