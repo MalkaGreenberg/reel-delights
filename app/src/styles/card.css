@@ -1,0 +1,26 @@
+.card {
+    width: 200px;
+    padding: 40px;
+    font-size: 10px;
+    background-color: #f0f0f0;
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    margin: 0 10px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .card p {
+    color: blue;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .card:hover {
+    background-color: #a0a0a0;
+    color: white;
+    cursor: pointer;
+  }
+
+  .card-container {
+    display: flex;
+  }
