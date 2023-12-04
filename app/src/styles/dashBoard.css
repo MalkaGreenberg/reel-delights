@@ -1,0 +1,89 @@
+/* Dashboard.css */
+body, h1, h2, h3, p, ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  
+  .searchBar.top-right {
+    position:absolute;
+    top: 0;
+    right: 0;
+    margin: 5px;
+  }
+
+  .friendsBar.top-right {
+    position:absolute;
+    top: 50px;
+    right: 0;
+    margin: 20px;
+    width: 200px;
+    height: auto;
+    background-color: #333;
+    color: white; 
+    margin: 0;
+  }
+  h1 {
+    padding: 40px;
+  }
+  .dashboard {
+    display: flex;
+    height: 100vh;
+    align-items: stretch;
+  }
+
+  img {
+    display:flex;
+     margin-left: 300px;
+    height:20vh;
+    background-color: rgba(255, 255, 255, 0); /* transparent white background */
+  }
+  
+  .sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #187a8e;
+    color: white; 
+    margin: 0;
+
+  }
+  
+  .content {
+    flex: 1;
+
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    padding: 10px;
+    cursor: pointer;
+    border: 1px solid black;
+  }
+  
+  li:hover {
+    background-color: #555;
+  }
+  
+.image-container {
+  display: flex;
+  align-items: left;
+}
+
+.textBox {
+  margin-top: 10px;
+  height: 10%;
+border-radius: 1px;
+border: 1px solid #ddd;
+display: inline-block;
+  }
+
+.textBox p {
+  color: red;
+  font-weight: bold;
+}
