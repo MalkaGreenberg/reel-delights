@@ -12,7 +12,7 @@ const LandingPage = () => {
             <a href="https://github.com/MalkaGreenberg/reel-delights" class="btn btn-github" target="_blank">Check us out on GitHub</a>
         </div>
         <div class="right-content">
-            <img src={image} alt="Reel Delights Image"/>
+            <img class="movieNight" src={image} alt="Reel Delights Image"/>
         </div>
     </div>
   );
