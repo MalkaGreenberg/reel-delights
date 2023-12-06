@@ -19,10 +19,11 @@ const Dashboard = () => {
   const handleSearchClick = () => {
    
       fetch(`http://www.omdbapi.com/?s=${searchTerm}&apikey=b5dd3f40`)
+      .then((response) => response.json())
       .then((data) => {
-        if (data != []) {
+        if (data.Search && data.Search.length > 0) {
           setSearchResults(data.Search);
-          console.log(searchResults);
+          console.log(data);
           setError(null);
         } else {
           setSearchResults([]);
@@ -65,10 +66,10 @@ const Dashboard = () => {
       </ul>
     </div>
 
-      {/* Friends Bar
+      Friends Bar
       <div className="friendsBar top-right">
       Friends
-      </div> */}
+      </div>
         {/* Add your content here */}
       <div className="card-container">
         <div className="card" id="card1">
