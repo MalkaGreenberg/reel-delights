@@ -27,8 +27,8 @@ const MyEventForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Handle form submission logic here
-    // You can access the form data: selectedDate, selectedTime, friends, movieSuggestions
+    // (Form submission logic)
+
     console.log('Form submitted:', {
       selectedDate,
       selectedTime,
