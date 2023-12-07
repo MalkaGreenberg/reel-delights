@@ -60,6 +60,7 @@ const Login = () => {
         <a href="/forgot-password">Forgot your password?</a>
         <br />
         <button className="btn" type="submit">Login</button>
+        <button className="btn" type="submit">Sign up</button>
       </form>
 
       <p className="altSignIn">Or sign in with</p>
