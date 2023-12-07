@@ -14,13 +14,18 @@ const MyEventForm = () => {
     setModalIsOpen(false); // Close the modal after selecting a date
   };
 
+  const openDatePicker = (e) => {
+    e.preventDefault(); // Prevent the default form submission
+    setModalIsOpen(true);
+  };
+
   return (
     <div>
       <h2>Event Details</h2>
       <form>
         <div>
           <label>Select Date:</label>
-          <button onClick={() => setModalIsOpen(true)}>Open Date Picker</button>
+          <button onClick={openDatePicker}>Open Date Picker</button>
         </div>
       </form>
 
