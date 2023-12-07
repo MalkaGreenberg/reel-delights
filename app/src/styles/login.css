@@ -2,8 +2,8 @@
     margin:0px;
     padding:0px;
     box-sizing:border-box;
-    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
-    background-color: #f5f5f5;  
+    border-radius: 10px;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;  
 
 }
 
@@ -14,11 +14,14 @@ padding:20px;
 
 .box {
 display:flex;
-padding:15px;
+margin: 0 auto;
+padding:20px;
+background-color: #fff;
 justify-content: center; 
 flex-direction: column;
 color:black;  
 height: 320px;
+border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 
 }
@@ -32,6 +35,7 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     font-weight: bold;
     margin-top: 20px;
+    margin-bottom: 20px;
     display: block;
 }
 
