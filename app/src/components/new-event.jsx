@@ -35,6 +35,12 @@ const MyEventForm = () => {
       friends,
       movieSuggestions,
     });
+
+    // Clear the form fields after submission
+    setSelectedDate(null);
+    setSelectedTime('');
+    setFriends('');
+    setMovieSuggestions('');
   };
 
   return (
