@@ -60,11 +60,11 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in to save mingles!');
           },
 
-          removeMingle: async (parent, { bookId }, context) => {
+          removeMingle: async (parent, { mingleId }, context) => {
             if (context.user) {
               const updatedUser = await User.findByIdAndUpdate(
                 context.user._id,
-                { $pull: { movieMingles: { bookId } } },
+                { $pull: { movieMingles: { mingleId } } },
                 { new: true }
               ).populate('movieMingles');
       
