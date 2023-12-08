@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import "../styles/new-event.css";
 
 const MyEventForm = () => {
   const [selectedDate, setSelectedDate] = useState(null);
@@ -44,9 +45,9 @@ const MyEventForm = () => {
   };
 
   return (
-    <div>
+    <div className="event-form-container">
       <h2>Event Details</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="event-form" onSubmit={handleSubmit}>
         <div>
           <label>Select Date:</label>
           <DatePicker selected={selectedDate} onChange={handleDateChange} />
