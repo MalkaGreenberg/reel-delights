@@ -1,0 +1,43 @@
+*{
+    margin:0px;
+    padding:0px;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Tahoma, Verdana, sans-serif;
+    background-color: #f5f5f5;  
+
+}
+
+h2 {
+color:black;
+padding:20px;
+}
+
+.box {
+display:flex;
+padding:15px;
+justify-content: center; 
+flex-direction: column;
+color:black;  
+height: 320px;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+}
+
+.btn {
+    display: inline-block;
+    padding: 5px 15px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    display: block;
+}
+
+.altSignIn {
+    padding:25px;
+}
+
+
+
