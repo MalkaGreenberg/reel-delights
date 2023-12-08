@@ -2,7 +2,8 @@ import React from 'react';
 import LandingPage from './components/landingPage';
 // import LoginPage from './components/login';
 import LoginPage from'./components/dashboard';
-// import LoginPage from './components/new-event';
+// import LoginPage from './components/newEvent';
+// import LoginPage from './components/movieMingle';
 // import FacebookLoginButton from './components/FacebookLogin';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';

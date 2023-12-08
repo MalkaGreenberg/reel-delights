@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import MovieSearch from './MovieSearch'; // Import MovieSearch component
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import "../styles/new-event.css";
+import '../styles/new-event.css';
 
-const MyEventForm = () => {
+const NewEvent = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedFriends, setSelectedFriends] = useState([]);
   const [movieSuggestions, setMovieSuggestions] = useState('');
   const [friendsList, setFriendsList] = useState([]);
+  const [selectedMovies, setSelectedMovies] = useState([]); // New state for selected movies
 
   useEffect(() => {
     const fetchFriendsFromDatabase = async () => {
@@ -47,24 +49,30 @@ const MyEventForm = () => {
     setMovieSuggestions(e.target.value);
   };
 
+  const handleMovieSelect = (selectedMovie) => {
+    setSelectedMovies(prevMovies => [...prevMovies, selectedMovie]);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  
     // (Form submission logic)
-
+  
     console.log('Form submitted:', {
       selectedDate,
       selectedTime,
       selectedFriends,
       movieSuggestions,
+      selectedMovies,
     });
-
+  
     // Clear the form fields after submission
     setSelectedDate(null);
     setSelectedTime('');
     setSelectedFriends([]); // Clear selectedFriends
     setMovieSuggestions('');
-  };
+    setSelectedMovies([]); // Clear selectedMovies
+  };  
 
   return (
     <div className="event-form-container">
@@ -95,12 +103,20 @@ const MyEventForm = () => {
           ))}
         </div>
 
+        {/* Include MovieSearch component */}
         <div>
-          <label>Movie Suggestions:</label>
-          <textarea
-            value={movieSuggestions}
-            onChange={handleMovieSuggestionsChange}
-          />
+          <label>Select Movies:</label>
+          <MovieSearch onMovieSelect={handleMovieSelect} />
+        </div>
+
+        {/* Display selected movies */}
+        <div>
+          <label>Selected Movies:</label>
+          <ul>
+            {selectedMovies.map((movie) => (
+              <li key={movie.imdbID}>{movie.Title}</li>
+            ))}
+          </ul>
         </div>
 
         <button type="submit">Submit</button>
@@ -109,4 +125,4 @@ const MyEventForm = () => {
   );
 };
 
-export default MyEventForm;
+export default NewEvent;
