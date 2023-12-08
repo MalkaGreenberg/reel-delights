@@ -2,6 +2,7 @@ import React from 'react';
 import LandingPage from './components/landingPage';
 // import LoginPage from './components/login';
 import LoginPage from'./components/dashboard';
+import MovieMingles from './components/movieMingle';
 // import LoginPage from './components/new-event';
 // import FacebookLoginButton from './components/FacebookLogin';
 
@@ -19,6 +20,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<LoginPage />} />
+      <Route path="/movieMingles" element={<MovieMingles />} />
       {/* <Route path="/facebook-login" element={<FacebookLoginButton onFacebookLogin={handleFacebookLogin} />} /> */}
     </Routes>
     </Router>

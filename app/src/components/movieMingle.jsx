@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import '../styles/movieMingle.css';
 
 const MingleCard = ({ title, description }) => {
   return (
-    <div style={{ border: '1px solid #ccc', padding: '16px', margin: '16px', borderRadius: '8px' }}>
-      <h3>{title}</h3>
+    <div style={{ border: '1px solid purple', padding: '16px', margin: '16px', borderRadius: '8px' }}>
+      <h3 className="cardTitle">{title}</h3>
       <p>{description}</p>
     </div>
   );
@@ -36,8 +37,8 @@ const MingleApp = () => {
 
   return (
     <div>
-      <h1>Mingle App</h1>
-      <button onClick={handleCreateMingle}>Create New Mingle</button>
+      <h1>Movie Mingles</h1>
+      <button className="cardButton" onClick={handleCreateMingle}>Create New Mingle</button>
       <MingleList mingles={mingles} />
     </div>
   );
