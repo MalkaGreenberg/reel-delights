@@ -24,33 +24,42 @@ export const ADD_USER = gql`
   }
 `;
 
-export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+export const ADD_MINGLE = gql`
+  mutation addMingle($input: MingleInput!) {
+    saveMingle(input: $input) {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
+      movie {
+        title
+        image
+        genre
+      }
+      time
+      invites {
         _id
-        commentText
+        username
+        email
+        mingleCount
       }
     }
   }
 `;
 
-export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+export const REMOVE_MINGLE = gql`
+  mutation removeMingle($mingleId: ID!) {
+    removeMingle(mingleId: $mingleId) {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
+      movie {
+        title
+        image
+        genre
+      }
+      time
+      invites {
         _id
-        commentText
-        createdAt
+        username
+        email
+        mingleCount
       }
     }
-  }
+}
 `;
