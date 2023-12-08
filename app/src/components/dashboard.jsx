@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MovieSearch from './MovieSearch';
 import Sidebar from './Sidebar';
-import '../styles/dashboard.css';
+import '../styles/dashBoard.css';
 import '../styles/card.css';
 import clock from "../assets/countdown-clock.png";
 
