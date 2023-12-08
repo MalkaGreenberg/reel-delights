@@ -35,6 +35,10 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleSignup = () => {
+    navigate("/signup", { replace: true });
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -56,8 +60,7 @@ const Login = () => {
 
       Auth.login(data.login.token);
 
-      // once the user is successfully logged in, navigate to their dashboard
-      navigate("/dashboard", { replace: true });
+
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -94,7 +97,7 @@ const Login = () => {
             name="password"
             value={userFormData.password}
             onChange={handleInputChange}
-            placeholder='Enter at least 8+ characters'
+            placeholder='password'
             required
           />
           <span onClick={handleTogglePassword}>{showPassword ? '🙈' : '👁️'}</span>
@@ -113,7 +116,7 @@ const Login = () => {
           </div>
         )}
         <button className="btn" type="submit">Login</button>
-        <button className="btn" type="submit">Sign Up</button>
+        <button className="btn" onClick={handleSignup}>Sign Up</button>
       </form>
 
       <p className="altSignIn">Or sign in with</p>
