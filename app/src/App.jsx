@@ -3,6 +3,8 @@ import LandingPage from './components/landingPage';
 // import LoginPage from './components/login';
 import LoginPage from'./components/dashboard';
 import MovieMingles from './components/movieMingle';
+
+
 // import LoginPage from './components/new-event';
 // import FacebookLoginButton from './components/FacebookLogin';
 
@@ -32,8 +34,7 @@ const App = () => {
 
 
 
-export default App;
-import React from 'react';
+export default App;import React from 'react';
 import LandingPage from './components/landingPage';
 // import LoginPage from './components/login';
 import LoginPage from'./components/dashboard';
