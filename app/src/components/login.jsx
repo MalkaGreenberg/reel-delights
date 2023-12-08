@@ -1,21 +1,21 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations'; 
+import { LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth';
-
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const [login, {error}] = useMutation(LOGIN_USER);
- 
+  const [login, { error }] = useMutation(LOGIN_USER);
+
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   // const [username, setUsername] = useState('');
   // const [password, setPassword] = useState('');
@@ -26,14 +26,6 @@ const Login = () => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
-
-  // const handleUsernameChange = (e) => {
-  //   setUsername(e.target.value);
-  // };
-
-  // const handlePasswordChange = (e) => {
-  //   setPassword(e.target.value);
-  // };
 
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
@@ -52,22 +44,31 @@ const Login = () => {
     }
 
     try {
-       const { data } = await login({
-        variables: {...userFormData },
+      if (!userFormData.email || !userFormData.password) {
+        setErrorMessage('Please enter both email and password.');
+        setShowAlert(true);
+        return;
+      }
+
+      const { data } = await login({
+        variables: { ...userFormData },
       });
 
       Auth.login(data.login.token);
 
-      //once the user is successfully logged in they are taken to their dashboard
-      // useEffect(() => {
-      //   if (Auth.loggedIn()) {
-      //     navigate("/dashboard", { replace: true });
-      //   }
-      // }, []); 
-      
+      // once the user is successfully logged in, navigate to their dashboard
+      navigate("/dashboard", { replace: true });
     } catch (err) {
       console.error(err);
       setShowAlert(true);
+
+      if (err.message.includes('password')) {
+        setErrorMessage('Incorrect password. Please try again.');
+      } else if (err.message.includes('user')) {
+        setErrorMessage('User not found. \n incorrect password or email.');
+      } else {
+        setErrorMessage('An error occurred. Please try again.');
+      }
     }
 
     setUserFormData({
@@ -75,17 +76,15 @@ const Login = () => {
       email: '',
       password: '',
     });
-    
   };
 
   return (
     <div className="bigBox">
-      {/* <h2>Sign in</h2> */}
       <form className="box" onSubmit={handleSubmit}>
-       <h2>Sign In</h2>
-       <label className='label'>
+        <h2>Sign In</h2>
+        <label className='label'>
           Username:
-          <input type="text" name="email" value={userFormData.email} onChange={handleInputChange} placeholder='example@email.com'/>
+          <input type="text" name="email" value={userFormData.email} onChange={handleInputChange} placeholder='example@email.com' required />
         </label>
         <br />
         <label className='label'>
@@ -96,6 +95,7 @@ const Login = () => {
             value={userFormData.password}
             onChange={handleInputChange}
             placeholder='Enter at least 8+ characters'
+            required
           />
           <span onClick={handleTogglePassword}>{showPassword ? '🙈' : '👁️'}</span>
         </label>
@@ -107,6 +107,11 @@ const Login = () => {
         <br />
         <a href="/forgot-password">Forgot your password?</a>
         <br />
+        {showAlert && (
+          <div className="error-notification">
+            {errorMessage}
+          </div>
+        )}
         <button className="btn" type="submit">Login</button>
         <button className="btn" type="submit">Sign Up</button>
       </form>
