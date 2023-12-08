@@ -1,0 +1,50 @@
+/* Container styles */
+.event-form-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Heading styles */
+  .event-form-container h2 {
+    color: #333;
+  }
+  
+  /* Form styles */
+  .event-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Form field styles */
+  .event-form label {
+    margin-bottom: 8px;
+    font-weight: bold;
+  }
+  
+  .event-form input,
+  .event-form textarea,
+  .event-form button {
+    margin-bottom: 16px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .event-form button {
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 600px) {
+    .event-form-container {
+      width: 100%;
+      padding: 10px;
+    }
+  }  

@@ -1,12 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import "../styles/new-event.css";
 
 const MyEventForm = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
-  const [friends, setFriends] = useState('');
+  const [selectedFriends, setSelectedFriends] = useState([]);
   const [movieSuggestions, setMovieSuggestions] = useState('');
+  const [friendsList, setFriendsList] = useState([]);
+
+  useEffect(() => {
+    const fetchFriendsFromDatabase = async () => {
+      try {
+        const response = await fetch('/api/friends');
+        const data = await response.json();
+        setFriendsList(data);
+      } catch (error) {
+        console.error('Error fetching friends:', error);
+      }
+    };
+
+    fetchFriendsFromDatabase();
+  }, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -17,7 +33,14 @@ const MyEventForm = () => {
   };
 
   const handleFriendsChange = (e) => {
-    setFriends(e.target.value);
+    const friendId = parseInt(e.target.value);
+    const isChecked = e.target.checked;
+
+    if (isChecked) {
+      setSelectedFriends([...selectedFriends, friendId]);
+    } else {
+      setSelectedFriends(selectedFriends.filter((id) => id !== friendId));
+    }
   };
 
   const handleMovieSuggestionsChange = (e) => {
@@ -32,21 +55,21 @@ const MyEventForm = () => {
     console.log('Form submitted:', {
       selectedDate,
       selectedTime,
-      friends,
+      selectedFriends,
       movieSuggestions,
     });
 
     // Clear the form fields after submission
     setSelectedDate(null);
     setSelectedTime('');
-    setFriends('');
+    setSelectedFriends([]); // Clear selectedFriends
     setMovieSuggestions('');
   };
 
   return (
-    <div>
+    <div className="event-form-container">
       <h2>Event Details</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="event-form" onSubmit={handleSubmit}>
         <div>
           <label>Select Date:</label>
           <DatePicker selected={selectedDate} onChange={handleDateChange} />
@@ -59,7 +82,17 @@ const MyEventForm = () => {
 
         <div>
           <label>Friends:</label>
-          <input type="text" value={friends} onChange={handleFriendsChange} />
+          {friendsList.map((friend) => (
+            <div key={friend.id}>
+              <input
+                type="checkbox"
+                value={friend.id}
+                checked={selectedFriends.includes(friend.id)}
+                onChange={handleFriendsChange}
+              />
+              <span>{friend.name}</span>
+            </div>
+          ))}
         </div>
 
         <div>

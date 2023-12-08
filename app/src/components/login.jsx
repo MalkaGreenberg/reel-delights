@@ -67,7 +67,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="bigBox">
       {/* <h2>Sign in</h2> */}
       <form className="box" onSubmit={handleSubmit}>
        <h2>Sign In</h2>
@@ -96,7 +96,7 @@ const Login = () => {
         <a href="/forgot-password">Forgot your password?</a>
         <br />
         <button className="btn" type="submit">Login</button>
-        <button className="btn" type="submit">Sign up</button>
+        <button className="btn" type="submit">Sign Up</button>
       </form>
 
       <p className="altSignIn">Or sign in with</p>
