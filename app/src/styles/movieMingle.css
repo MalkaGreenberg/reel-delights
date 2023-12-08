@@ -1,0 +1,65 @@
+/* movieMingle.css */
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    color: #333;
+    border: 2px solid purple;
+    padding: 10px;
+  }
+
+  .cardButton {
+    color:purple;
+    border: 2px solid purple;
+  }
+  
+  button {
+    background-color: #4caf50;
+    color: green;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: black;
+  }
+  
+  .mingle-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .mingle-card {
+    border: 2px solid purple;
+    padding: 16px;
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .cardTitle {
+    color: purple;
+  }
+  .mingle-card h3 {
+    color: #333;
+  }
+  
+  .mingle-card p {
+    color: #555;
+  }
+  

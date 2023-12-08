@@ -2,6 +2,7 @@ import React from 'react';
 import LandingPage from './components/landingPage';
 // import LoginPage from './components/login';
 import LoginPage from'./components/dashboard';
+import MovieMingle from './components/movieMingle';
 // import LoginPage from './components/newEvent';
 // import LoginPage from './components/movieMingle';
 // import FacebookLoginButton from './components/FacebookLogin';
@@ -28,6 +29,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/movieMingles" element={<MovieMingle />} />
         </Routes>
       </Router>
     </ApolloProvider>
