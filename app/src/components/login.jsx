@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations'; 
-import Auth from '../utils/auth';
+import '../styles/login.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
+
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -32,14 +33,15 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Sign in</h2>
-      <form onSubmit={handleSubmit}>
-        <label>
+      {/* <h2>Sign in</h2> */}
+      <form className="box" onSubmit={handleSubmit}>
+       <h2>Sign In</h2>
+        <label className='label'>
           Username:
           <input type="text" value={username} onChange={handleUsernameChange} placeholder='example@email.com'/>
         </label>
         <br />
-        <label>
+        <label className='label'>
           Password:
           <input
             type={showPassword ? 'text' : 'password'}
@@ -50,17 +52,18 @@ const Login = () => {
           <span onClick={handleTogglePassword}>{showPassword ? '🙈' : '👁️'}</span>
         </label>
         <br />
-        <label>
+        <label className='label'>
           <input type="checkbox" checked={rememberMe} onChange={handleRememberMeChange} />
           Remember me
         </label>
         <br />
         <a href="/forgot-password">Forgot your password?</a>
         <br />
-        <button type="submit">Login</button>
+        <button className="btn" type="submit">Login</button>
+        <button className="btn" type="submit">Sign up</button>
       </form>
 
-      <p>Or sign in with</p>
+      <p className="altSignIn">Or sign in with</p>
       <div>
         <a href="/auth/google">Sign in with Google</a>
         <br />
