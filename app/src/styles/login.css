@@ -8,11 +8,11 @@
 }
 
 h2 {
-color:black;
+
 padding:20px;
 }
 
-.box {
+.bigBox {
 display:flex;
 margin: 0 auto;
 padding:20px;
@@ -20,15 +20,15 @@ background-color: #fff;
 justify-content: center; 
 flex-direction: column;
 color:black;  
-height: 320px;
+height: 450px;
 border-radius: 10px;
 box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-
+text-align:center;
 }
 
 .btn {
     display: inline-block;
-    padding: 5px 15px;
+    padding: 5px;
     text-decoration: none;
     background-color: #3498db;
     color: #fff;
@@ -36,9 +36,10 @@ box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     font-weight: bold;
     margin-top: 20px;
     margin-bottom: 20px;
-    display: block;
 }
 
 
-
+.altSignIn {
+  
+}
 
