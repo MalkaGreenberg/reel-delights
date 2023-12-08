@@ -1,6 +1,7 @@
 import React from 'react';
 import LandingPage from './components/landingPage';
-import LoginPage from './components/login';
+// import LoginPage from './components/login';
+import LoginPage from'./components/dashboard';
 // import LoginPage from './components/new-event';
 // import FacebookLoginButton from './components/FacebookLogin';
 
