@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
@@ -8,6 +9,8 @@ import Auth from '../utils/auth';
 
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const [login, {error}] = useMutation(LOGIN_USER);
  
   const [userFormData, setUserFormData] = useState({ email: '', password: '' });
@@ -54,6 +57,14 @@ const Login = () => {
       });
 
       Auth.login(data.login.token);
+
+      //once the user is successfully logged in they are taken to their dashboard
+      // useEffect(() => {
+      //   if (Auth.loggedIn()) {
+      //     navigate("/dashboard", { replace: true });
+      //   }
+      // }, []); 
+      
     } catch (err) {
       console.error(err);
       setShowAlert(true);
@@ -64,6 +75,7 @@ const Login = () => {
       email: '',
       password: '',
     });
+    
   };
 
   return (

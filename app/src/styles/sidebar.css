@@ -1,0 +1,23 @@
+.sidebarList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .link {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    color: white;
+    background-color: #187a8e; /* Choose your preferred button color */
+    border: 1px solid #187a8e; /* Add a border for a button-like appearance */
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .link:hover {
+    background-color: #777;
+    color:aliceblue /* Change the background color on hover */
+  }

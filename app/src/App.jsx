@@ -1,7 +1,8 @@
 import React from 'react';
 import LandingPage from './components/landingPage';
 // import LoginPage from './components/login';
-import LoginPage from'./components/dashboard';
+import LoginPage from'./components/login';
+import Dashboard from "./components/dashboard";
 import MovieMingle from './components/movieMingle';
 // import LoginPage from './components/newEvent';
 // import LoginPage from './components/movieMingle';
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/movieMingles" element={<MovieMingle />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </Router>
     </ApolloProvider>

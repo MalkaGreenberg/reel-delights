@@ -24,7 +24,7 @@ body {
     border: 2px solid purple;
   }
   
-  button {
+  .searchbtn {
     background-color: #4caf50;
     color: green;
     padding: 10px 20px;
@@ -34,7 +34,7 @@ body {
     border-radius: 4px;
   }
   
-  button:hover {
+  .searchbtn:hover {
     background-color: black;
   }
   

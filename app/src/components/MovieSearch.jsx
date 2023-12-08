@@ -48,9 +48,9 @@ const MovieSearch = ({ onMovieSelect }) => {
                 Search
             </button>
 
-            <ul>
+            <ul className='movieList'>
                 {searchResults.map((result) => (
-                    <li key={result.imdbID} onClick={() => handleMovieSelect(result)}>
+                    <li className='movies' key={result.imdbID} onClick={() => handleMovieSelect(result)}>
                         {result.Title}
                     </li>
                 ))}

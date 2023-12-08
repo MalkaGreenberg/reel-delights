@@ -65,18 +65,18 @@ h1 {
   flex: 1;
 }
 
-ul {
+.movieList {
   list-style-type: none;
   padding: 0;
 }
 
-li {
+.movies {
   padding: 10px;
   cursor: pointer;
   border: 1px solid black;
 }
 
-li:hover {
+.movies:hover {
   background-color: #555;
 }
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import MovieSearch from './MovieSearch';
-import Sidebar from './sidebar.jsx';
+import Sidebar from './Sidebar';
 import '../styles/dashboard.css';
 import '../styles/card.css';
 import clock from "../assets/countdown-clock.png";
