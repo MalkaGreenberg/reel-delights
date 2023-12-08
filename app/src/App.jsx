@@ -6,8 +6,15 @@ import LoginPage from'./components/dashboard';
 // import FacebookLoginButton from './components/FacebookLogin';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import './App.css' 
+import './App.css' // CSS File
 
+
+import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: '/graphql',
+  cache: new InMemoryCache(),
+});
 
 const App = () => {
   const handleFacebookLogin = (response) => {
@@ -15,15 +22,15 @@ const App = () => {
     console.log(response);
   };
   return (
-    <Router>
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      {/* <Route path="/facebook-login" element={<FacebookLoginButton onFacebookLogin={handleFacebookLogin} />} /> */}
-    </Routes>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/login" element={<LoginPage />} />
+        </Routes>
+      </Router>
+    </ApolloProvider>
 
-    
   );
   
 }

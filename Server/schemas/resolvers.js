@@ -1,6 +1,5 @@
-const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
-const { signToken } = require('../utils/auth');
+const { signToken, AuthenticationError } = require('../utils/auth');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
 
@@ -16,7 +15,7 @@ const resolvers = {
                     
                     return userData;
           }
-          throw new AuthenticationError('You need to be logged in!');
+          throw AuthenticationError
         },
       },
     Mutation: {
@@ -24,13 +23,13 @@ const resolvers = {
             const user = await User.findOne({ email });
       
             if (!user) {
-              throw new AuthenticationError('Incorrect email or password!');
+              throw AuthenticationError
             }
       
             const correctPassword = await user.isCorrectPassword(password);
       
             if (!correctPassword) {
-              throw new AuthenticationError('Incorrect email or password!');
+              throw AuthenticationError
             }
       
             const token = signToken(user);
@@ -57,7 +56,7 @@ const resolvers = {
               return updatedUser;
             }
       
-            throw new AuthenticationError('You need to be logged in to save mingles!');
+            throw AuthenticationError
           },
 
           removeMingle: async (parent, { mingleId }, context) => {
@@ -71,7 +70,7 @@ const resolvers = {
               return updatedUser;
             }
       
-            throw new AuthenticationError('You need to be logged in to remove mingles!');
+            throw AuthenticationError
           },
           
         },
