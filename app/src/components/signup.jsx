@@ -8,6 +8,7 @@ const SignupForm = () => {
   const navigate = useNavigate();
   const [addUser, { loading: addUserLoading, error: addUserError }] = useMutation(ADD_USER);
   const [login, { loading: loginLoading, error: loginError }] = useMutation(LOGIN_USER);
+  // const [error, setError] = useState = ([]);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
