@@ -5,7 +5,7 @@ export const GET_ME = gql`
     me {
       _id
       username
-      movieMingles {
+      movieMingles{
         _id
         movie {
           title
@@ -32,6 +32,35 @@ export const GET_MINGLE_BY_ID = gql`
         username
         email
         mingleCount
+      }
+    }
+  }
+`;
+
+export const GET_MINGLES_FOR_USER= gql`
+  query getMinglesForUser($userId: ID!) {
+    getUserMinglesById(userId: $userId) {
+      _id
+      movie {
+        title
+        image
+        genre
+      }
+      time
+      invites {
+        _id
+        username
+        email
+        mingleCount
+        movieMingles {
+          _id
+          movie {
+            title
+            image
+            genre
+          }
+          time
+        }
       }
     }
   }

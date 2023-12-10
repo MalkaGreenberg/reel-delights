@@ -17,6 +17,18 @@ const resolvers = {
           }
           throw AuthenticationError
         },
+        getUserMinglesById: async (parent, { userId }, context) => {
+          // if (userId) {
+            // Assuming the user ID is available in context.user._id
+            const userMingles = await User.findById(userId)
+              .select("movieMingles")
+              .populate("movieMingles");
+    
+            return userMingles ? userMingles.movieMingles : [];
+          // }
+
+          // throw new Error("can not find Mingles for this user");
+        },
       },
     Mutation: {
         login: async (parent, { username, password }) => {

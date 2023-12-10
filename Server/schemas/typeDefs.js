@@ -23,9 +23,13 @@ const typeDefs = `
     me: User
    }
 
+   extend type Query {
+    getUserMinglesById(userId: ID!): [Mingle]
+  }
+
    type Mutation {
-    login(username: String!, password: String!): Auth
-    addUser(username: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     saveMingle(input: MingleInput!): User
     removeMingle(mingleId: ID!): User
    }
@@ -35,7 +39,7 @@ const typeDefs = `
     username: String
     email: String
     mingleCount: Int
-    savedMingles: [Mingle]
+    movieMingles: [Mingle]
   }
 
   type Mingle {
