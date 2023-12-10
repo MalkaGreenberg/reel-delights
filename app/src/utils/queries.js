@@ -17,6 +17,15 @@ export const GET_ME = gql`
   }
 `;
 
+export const GET_ALL_USERS = gql`
+  query getUsers {
+    getUsers {
+      _id
+      username
+    }
+  }
+`;
+
 export const GET_MINGLE_BY_ID = gql`
   query getMingleById($mingleId: ID!) {
     mingleById(mingleId: $mingleId) {

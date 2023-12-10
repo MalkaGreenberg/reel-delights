@@ -3,27 +3,28 @@ import MovieSearch from './MovieSearch'; // Import MovieSearch component
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/new-event.css';
+import { GET_ALL_USERS } from '../utils/queries';
+import { ADD_MINGLE } from '../utils/mutations';
+import { useQuery, useMutation } from '@apollo/client';
+import Select from "react-dropdown-select";
+import Auth from '../utils/auth';
 
 const NewEvent = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedFriends, setSelectedFriends] = useState([]);
-  const [movieSuggestions, setMovieSuggestions] = useState('');
   const [friendsList, setFriendsList] = useState([]);
-  const [selectedMovies, setSelectedMovies] = useState([]); // New state for selected movies
+  const [addMingle, error] = useMutation(ADD_MINGLE);
+  const [selectedMovies, setSelectedMovies] = useState(''); // New state for selected movies
+
+  const { loading, data } = useQuery(GET_ALL_USERS);
+
+
+  const usersList = data?.getUsers || [];
+  console.log(usersList);
 
   useEffect(() => {
-    const fetchFriendsFromDatabase = async () => {
-      try {
-        const response = await fetch('/api/friends');
-        const data = await response.json();
-        setFriendsList(data);
-      } catch (error) {
-        console.error('Error fetching friends:', error);
-      }
-    };
 
-    fetchFriendsFromDatabase();
   }, []);
 
   const handleDateChange = (date) => {
@@ -35,44 +36,59 @@ const NewEvent = () => {
   };
 
   const handleFriendsChange = (e) => {
-    const friendId = parseInt(e.target.value);
-    const isChecked = e.target.checked;
-
-    if (isChecked) {
-      setSelectedFriends([...selectedFriends, friendId]);
-    } else {
-      setSelectedFriends(selectedFriends.filter((id) => id !== friendId));
-    }
-  };
-
-  const handleMovieSuggestionsChange = (e) => {
-    setMovieSuggestions(e.target.value);
+    const selectedOptions = Array.from(e.target.selectedOptions, (option) =>
+      parseInt(option.value)
+    );
+    setSelectedFriends(selectedOptions);
   };
 
   const handleMovieSelect = (selectedMovie) => {
-    setSelectedMovies(prevMovies => [...prevMovies, selectedMovie]);
+    setSelectedMovies(selectedMovie);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-  
-    // (Form submission logic)
-  
+
+    const invitesArray = selectedFriends.map(friendId => ({ _Id: friendId }));
+
+    const user = Auth.getProfile();
+    const userId = user.data._id;
+
+    const movieMingle = {
+      input: {
+        movie: {
+          title: selectedMovies.Title,
+          image: selectedMovies.Poster,
+          genre: selectedMovies.Type
+        },
+        time: selectedDate,
+        invites: invitesArray
+      },
+      userId: user.data._id
+    };
+
+    const { data: addMingleData } = await addMingle({
+      variables: movieMingle,
+    });
+
+    console.log('Mingle added:', addMingleData.addMingle);
+
     console.log('Form submitted:', {
       selectedDate,
       selectedTime,
       selectedFriends,
-      movieSuggestions,
       selectedMovies,
+      userId,
     });
-  
+
+
+
     // Clear the form fields after submission
     setSelectedDate(null);
     setSelectedTime('');
-    setSelectedFriends([]); // Clear selectedFriends
-    setMovieSuggestions('');
+    setSelectedFriends([]); 
     setSelectedMovies([]); // Clear selectedMovies
-  };  
+  };
 
   return (
     <div className="event-form-container">
@@ -88,34 +104,31 @@ const NewEvent = () => {
           <input type="time" value={selectedTime} onChange={handleTimeChange} />
         </div>
 
-        <div>
-          <label>Friends:</label>
-          {friendsList.map((friend) => (
-            <div key={friend.id}>
-              <input
-                type="checkbox"
-                value={friend.id}
-                checked={selectedFriends.includes(friend.id)}
-                onChange={handleFriendsChange}
-              />
-              <span>{friend.name}</span>
-            </div>
-          ))}
+        <div >
+          <label>Invite Friends:</label>
+          <div >
+            <Select
+              multi="true"
+              color="#187a8e"
+              options={usersList}
+              labelField="username"
+              valueField="_id"
+              onChange={(values) => setSelectedFriends(values.map((value) => value._id))}
+            />
+          </div>
         </div>
 
         {/* Include MovieSearch component */}
         <div>
-          <label>Select Movies:</label>
+          <label>Search Movies:</label>
           <MovieSearch onMovieSelect={handleMovieSelect} />
         </div>
 
         {/* Display selected movies */}
         <div>
-          <label>Selected Movies:</label>
+          <label>Selected Movie:</label>
           <ul>
-            {selectedMovies.map((movie) => (
-              <li key={movie.imdbID}>{movie.Title}</li>
-            ))}
+            {selectedMovies.Title}
           </ul>
         </div>
 

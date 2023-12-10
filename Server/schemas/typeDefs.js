@@ -16,11 +16,16 @@ const typeDefs = `
   }
 
   input InviteInput {
-    userId: ID!
+    _Id: ID!
+    username: String
   }
 
    type Query{
     me: User
+   }
+
+   type Query{
+    getUsers: [User]
    }
 
    extend type Query {
@@ -30,7 +35,7 @@ const typeDefs = `
    type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    saveMingle(input: MingleInput!): User
+    saveMingle(input: MingleInput!, userId: ID!): User
     removeMingle(mingleId: ID!): User
    }
 
