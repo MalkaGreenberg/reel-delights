@@ -1,4 +1,4 @@
-// const { gql } = require('@apollo/server');
+const { gql } = require('@apollo/server');
 
 const typeDefs = `
    scalar Date
@@ -24,8 +24,8 @@ const typeDefs = `
    }
 
    type Mutation {
-    login(username: String!, password: String!): Auth
-    addUser(username: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
     saveMingle(input: MingleInput!): User
     removeMingle(mingleId: ID!): User
    }
