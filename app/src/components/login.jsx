@@ -115,8 +115,8 @@ const Login = () => {
             {errorMessage}
           </div>
         )}
-        <button className="btn" type="submit">Login</button>
-        <button className="btn" onClick={handleSignup}>Sign Up</button>
+        <button className="loginBtn" type="submit">Login</button>
+        <button className="loginBtn" onClick={handleSignup}>Sign Up</button>
       </form>
 
       <p className="altSignIn">Or sign in with</p>

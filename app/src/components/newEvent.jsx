@@ -1,38 +1,39 @@
 import React, { useState, useEffect } from 'react';
-import MovieSearch from './MovieSearch'; // Import MovieSearch component
+import MovieSearch from './MovieSearch';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/new-event.css';
 import { GET_ALL_USERS } from '../utils/queries';
 import { ADD_MINGLE } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
-import Select from "react-dropdown-select";
+import Select from 'react-dropdown-select';
 import Auth from '../utils/auth';
 
 const NewEvent = ({ onClose, onReloadData }) => {
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedTime, setSelectedTime] = useState('');
   const [selectedFriends, setSelectedFriends] = useState([]);
-  const [friendsList, setFriendsList] = useState([]);
   const [addMingle, error] = useMutation(ADD_MINGLE);
-  const [selectedMovies, setSelectedMovies] = useState(''); // New state for selected movies
+  const [selectedMovies, setSelectedMovies] = useState('');
 
   const { loading, data } = useQuery(GET_ALL_USERS);
-
-
   const usersList = data?.getUsers || [];
   console.log(usersList);
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
 
   const handleTimeChange = (e) => {
-    setSelectedTime(e.target.value);
+    const time = e.target.value;
+    // Update the time component of selectedDate
+    setSelectedDate((prevDate) => {
+      const newDate = prevDate ? new Date(prevDate) : new Date();
+      newDate.setHours(parseInt(time.split(':')[0], 10));
+      newDate.setMinutes(parseInt(time.split(':')[1], 10));
+      return newDate;
+    });
   };
 
   const handleFriendsChange = (e) => {
@@ -49,7 +50,7 @@ const NewEvent = ({ onClose, onReloadData }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const invitesArray = selectedFriends.map(friendId => ({ _Id: friendId }));
+    const invitesArray = selectedFriends.map((friendId) => ({ _Id: friendId }));
 
     const user = Auth.getProfile();
     const userId = user.data._id;
@@ -59,12 +60,12 @@ const NewEvent = ({ onClose, onReloadData }) => {
         movie: {
           title: selectedMovies.Title,
           image: selectedMovies.Poster,
-          genre: selectedMovies.Type
+          genre: selectedMovies.Type,
         },
-        time: selectedDate,
-        invites: invitesArray
+        time: selectedDate, // selectedDate now includes both date and time
+        invites: invitesArray,
       },
-      userId: user.data._id
+      userId: user.data._id,
     };
 
     const { data: addMingleData } = await addMingle({
@@ -75,7 +76,6 @@ const NewEvent = ({ onClose, onReloadData }) => {
 
     console.log('Form submitted:', {
       selectedDate,
-      selectedTime,
       selectedFriends,
       selectedMovies,
       userId,
@@ -90,17 +90,12 @@ const NewEvent = ({ onClose, onReloadData }) => {
       <form className="event-form" onSubmit={handleSubmit}>
         <div>
           <label>Select Date:</label>
-          <DatePicker selected={selectedDate} onChange={handleDateChange} />
+          <DatePicker selected={selectedDate} onChange={handleDateChange} showTimeSelect />
         </div>
 
         <div>
-          <label>Select Time:</label>
-          <input type="time" value={selectedTime} onChange={handleTimeChange} />
-        </div>
-
-        <div >
           <label>Invite Friends:</label>
-          <div >
+          <div>
             <Select
               multi="true"
               color="#187a8e"
@@ -112,18 +107,14 @@ const NewEvent = ({ onClose, onReloadData }) => {
           </div>
         </div>
 
-        {/* Include MovieSearch component */}
         <div>
           <label>Search Movies:</label>
           <MovieSearch onMovieSelect={handleMovieSelect} />
         </div>
 
-        {/* Display selected movies */}
         <div>
           <label>Selected Movie:</label>
-          <ul>
-            {selectedMovies.Title}
-          </ul>
+          <ul>{selectedMovies.Title}</ul>
         </div>
 
         <button type="submit">Submit</button>

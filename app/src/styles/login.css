@@ -12,6 +12,19 @@ h2 {
 padding:20px;
 }
 
+.loginBtn {
+    display: inline-block;
+    padding: 5px;
+    text-decoration: none;
+    background-color: #3498db;
+    color: #fff;
+    border-radius: 5px;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin: 5px;
+}
+
 .bigBox {
 display:flex;
 margin: 0 auto;
@@ -30,17 +43,6 @@ text-align:center;
     color: red;
 }
 
-.btn {
-    display: inline-block;
-    padding: 5px;
-    text-decoration: none;
-    background-color: #3498db;
-    color: #fff;
-    border-radius: 5px;
-    font-weight: bold;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
 
 .altSignIn {
     padding:25px;
