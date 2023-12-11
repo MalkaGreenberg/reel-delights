@@ -9,7 +9,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import Select from "react-dropdown-select";
 import Auth from '../utils/auth';
 
-const NewEvent = () => {
+const NewEvent = ({ onClose, onReloadData }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState('');
   const [selectedFriends, setSelectedFriends] = useState([]);
@@ -81,13 +81,7 @@ const NewEvent = () => {
       userId,
     });
 
-
-
-    // Clear the form fields after submission
-    setSelectedDate(null);
-    setSelectedTime('');
-    setSelectedFriends([]); 
-    setSelectedMovies([]); // Clear selectedMovies
+    onReloadData();
   };
 
   return (
