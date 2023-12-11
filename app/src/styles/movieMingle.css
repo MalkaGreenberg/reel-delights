@@ -24,7 +24,12 @@ body {
   margin: 0 auto;
 }
 
-
+.trashCan {
+  padding: 0;
+  background-color: white;
+  color: darkred;
+  padding-top: 5px;
+}
 
 .create-mingle-btn {
   background-color: purple;
@@ -64,6 +69,7 @@ body {
 .card-image {
   width: 100%;
   height: auto;
+  max-height: 250px;
   border-radius: 4px;
 }
 

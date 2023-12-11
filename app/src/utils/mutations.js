@@ -45,20 +45,21 @@ export const ADD_MINGLE = gql`
 `;
 
 export const REMOVE_MINGLE = gql`
-  mutation removeMingle($mingleId: ID!) {
-    removeMingle(mingleId: $mingleId) {
+  mutation removeMingle($mingleId: ID!, $userId: ID!) {
+    removeMingle(mingleId: $mingleId,  userId: $userId) {
       _id
-      movie {
-        title
-        image
-        genre
-      }
-      time
-      invites {
+      movieMingles {
         _id
-        username
-        email
-        mingleCount
+        movie {
+          title
+          image
+          genre
+        }
+        time
+        invites {
+          _id
+          username
+        }
       }
     }
 }

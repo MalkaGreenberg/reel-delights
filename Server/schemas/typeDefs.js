@@ -36,7 +36,7 @@ const typeDefs = `
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
     saveMingle(input: MingleInput!, userId: ID!): User
-    removeMingle(mingleId: ID!): User
+    removeMingle(mingleId: ID!, userId: ID!): User
    }
 
    type User {
