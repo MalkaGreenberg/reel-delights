@@ -4,12 +4,14 @@ const MovieSearch = ({ onMovieSelect }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [searchResults, setSearchResults] = useState([]);
 
+    // const apiKey = process.env.API_KEY;
+
     const handleInputChange = (e) => {
         setSearchTerm(e.target.value);
     };
 
     const handleSearchClick = () => {
-        fetch(`http://www.omdbapi.com/?s=${searchTerm}&apikey=b5dd3f40`)
+        fetch(`https://www.omdbapi.com/?s=${searchTerm}&apikey=b5dd3f40`)
             .then((response) => response.json())
             .then((data) => {
                 if (data.Search && data.Search.length > 0) {
