@@ -1,12 +1,26 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import image from '../assets/MovieNight.png';
+import Login from './login';
 import "../styles/landingPage.css";
 import Auth from '../utils/auth';
+import Modal from 'react-modal';
 
 const LandingPage = () => {
 
   const isLoggedIn = Auth.loggedIn();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [reloadData, setReloadData] = useState(false);
+  const [loginModalIsOpen, setLoginModalIsOpen] = useState(false);
+
+  const openLoginModal = () => {
+    setLoginModalIsOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setLoginModalIsOpen(false);
+  };
 
   return (
     <div className="container">
@@ -29,9 +43,28 @@ const LandingPage = () => {
           </>
 
         ) : (
-          <Link to="/login" className="btn">
-            Login/Signup
-          </Link>
+          // <Link to="/login" className="btn">
+          //   Login/Signup
+          // </Link>
+          <>
+            <button onClick={openLoginModal} className="btn">
+              Login/Signup
+            </button>
+            <Modal
+              isOpen={loginModalIsOpen}
+              onRequestClose={closeLoginModal}
+              style={{
+                content: {
+                  width: '375px',
+                  height: '500px',
+                  margin: 'auto',
+                  overflow: 'auto',
+                },
+              }}
+            >
+              <Login onClose={closeLoginModal} />
+            </Modal>
+          </>
         )}
         <a
           href="https://github.com/MalkaGreenberg/reel-delights"

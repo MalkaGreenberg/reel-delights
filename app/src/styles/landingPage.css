@@ -1,4 +1,4 @@
-body {
+.landingPage {
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
@@ -13,6 +13,7 @@ body {
     display: flex;
     max-width: 1000px;
     margin: 0 auto;
+    margin-top: 172px;
     padding: 20px;
     background-color: #fff;
     border-radius: 10px;

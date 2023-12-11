@@ -17,6 +17,30 @@ const resolvers = {
           }
           throw AuthenticationError
         },
+        getUserMinglesById: async (parent, { userId }, context) => {
+          // if (userId) {
+            // Assuming the user ID is available in context.user._id
+            const userMingles = await User.findById(userId)
+              .select("movieMingles")
+              .populate("movieMingles");
+    
+            return userMingles ? userMingles.movieMingles : [];
+          // }
+
+          // throw new Error("can not find Mingles for this user");
+        },
+        getUsers: async (parent, args , context) => {
+          // if (userId) {
+            // Assuming the user ID is available in context.user._id
+            const users = await User.find()
+              .select("username")
+              .populate("username");
+    
+            return users ? users : [];
+          // }
+
+          // throw new Error("can not find Mingles for this user");
+        },
       },
     Mutation: {
         login: async (parent, { email, password }) => {
@@ -44,19 +68,18 @@ const resolvers = {
             return { token, user };
           },
 
-          saveMingle: async (parent, { input }, context) => {
-            console.log('Context user:', context.user);
-            if (context.user) {
+          saveMingle: async (parent, { input, userId }, context) => {
+            console.log('Context user:', userId);
               const updatedUser = await User.findByIdAndUpdate(
-                context.user._id,
+                userId,
                 { $push: { movieMingles: input } },
                 { new: true }
               ).populate('movieMingles');
       
               return updatedUser;
-            }
+            
       
-            throw AuthenticationError
+            // throw AuthenticationError
           },
 
           removeMingle: async (parent, { mingleId }, context) => {

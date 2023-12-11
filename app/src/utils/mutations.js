@@ -25,20 +25,20 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_MINGLE = gql`
-  mutation addMingle($input: MingleInput!) {
-    saveMingle(input: $input) {
+  mutation addMingle($input: MingleInput!, $userId: ID!) {
+    saveMingle(input: $input, userId: $userId) {
       _id
-      movie {
-        title
-        image
-        genre
-      }
-      time
-      invites {
-        _id
-        username
-        email
-        mingleCount
+      movieMingles {
+        movie {
+          title
+          image
+          genre
+        }
+        time
+        invites {
+          _id
+          username
+        }
       }
     }
   }
