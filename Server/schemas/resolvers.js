@@ -78,22 +78,18 @@ const resolvers = {
       
               return updatedUser;
             
-      
-            // throw AuthenticationError
           },
 
-          removeMingle: async (parent, { mingleId }, context) => {
-            if (context.user) {
+          removeMingle: async (parent, { mingleId, userId }, context) => {
+            
               const updatedUser = await User.findByIdAndUpdate(
-                context.user._id,
-                { $pull: { movieMingles: { mingleId } } },
+                userId,
+                { $pull: { movieMingles: { _id: mingleId  } } },
                 { new: true }
               ).populate('movieMingles');
       
               return updatedUser;
-            }
-      
-            throw AuthenticationError
+            
           },
           
         },
