@@ -94,7 +94,7 @@ const NewEvent = ({ onClose, onReloadData }) => {
                 'Content-Type': 'application/json',
               },
               body: JSON.stringify({
-                to: userEmail,
+                to: `${friend.email}`,
                 subject: 'Invitation to Movie Mingle',
                 text: `Hi ${friend.username}, you've been invited to a Movie Mingle event on ${selectedDate}. Check it out!`,
               }),
