@@ -46,6 +46,21 @@ export const GET_MINGLE_BY_ID = gql`
   }
 `;
 
+export const GET_USER_BY_ID = gql`
+query user($userId: ID!) {
+  user(userId: $userId) {
+    _id
+    username
+    email
+    thoughts {
+      _id
+      thoughtText
+      createdAt
+    }
+  }
+}
+`;
+
 export const GET_MINGLES_FOR_USER= gql`
   query getMinglesForUser($userId: ID!) {
     getUserMinglesById(userId: $userId) {
