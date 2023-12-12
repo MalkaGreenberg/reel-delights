@@ -27,7 +27,6 @@ const NewEvent = ({ onClose, onReloadData }) => {
 
   const handleTimeChange = (e) => {
     const time = e.target.value;
-    // Update the time component of selectedDate
     setSelectedDate((prevDate) => {
       const newDate = prevDate ? new Date(prevDate) : new Date();
       newDate.setHours(parseInt(time.split(':')[0], 10));
@@ -62,7 +61,7 @@ const NewEvent = ({ onClose, onReloadData }) => {
           image: selectedMovies.Poster,
           genre: selectedMovies.Type,
         },
-        time: selectedDate, // selectedDate now includes both date and time
+        time: selectedDate,
         invites: invitesArray,
       },
       userId: user.data._id,
@@ -74,12 +73,37 @@ const NewEvent = ({ onClose, onReloadData }) => {
 
     console.log('Mingle added:', addMingleData.addMingle);
 
-    console.log('Form submitted:', {
-      selectedDate,
-      selectedFriends,
-      selectedMovies,
-      userId,
-    });
+    const emailFriends = async () => {
+      try {
+        const user = Auth.getProfile();
+        const userEmail = user.data.email;
+    
+        await Promise.all(
+          selectedFriends.map(async (friendId) => {
+            const friend = usersList.find((_user) => _user._id === friendId);
+    
+            const emailResponse = await fetch('/api/email/send-email', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                to: 'benjaminbirdsall@icloud.com',
+                subject: 'Invitation to Movie Mingle',
+                text: `Hi ${friend.username}, you've been invited to a Movie Mingle event on ${selectedDate}. Check it out!`,
+              }),
+            });
+    
+            const emailData = await emailResponse.json();
+            console.log('Email sent:', emailData);
+          })
+        );
+      } catch (error) {
+        console.error('Error sending emails:', error);
+      }
+    };    
+
+    await emailFriends();
 
     onReloadData();
   };
