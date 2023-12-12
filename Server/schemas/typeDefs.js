@@ -25,6 +25,7 @@ const typeDefs = `
     getUsers: [User]
     getMingleById(mingleId: ID!): Mingle
     getUserMinglesById(userId: ID!): [Mingle]
+    user(userId: ID!): User
   }
 
    type Mutation {

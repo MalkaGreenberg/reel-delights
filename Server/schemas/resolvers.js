@@ -41,6 +41,9 @@ const resolvers = {
 
       // throw new Error("can not find Mingles for this user");
     },
+    user: async (parent, { userId }) => {
+      return User.findOne(userId);
+    },
     getMingleById: async (parent, { mingleId }, context) => {
 
       const mingle = await User.findOne({ "movieMingles._id": mingleId })
