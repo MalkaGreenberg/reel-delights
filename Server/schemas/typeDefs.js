@@ -22,13 +22,8 @@ const typeDefs = `
 
    type Query{
     me: User
-   }
-
-   type Query{
     getUsers: [User]
-   }
-
-   extend type Query {
+    getMingleById(mingleId: ID!): Mingle
     getUserMinglesById(userId: ID!): [Mingle]
   }
 
