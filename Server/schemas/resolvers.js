@@ -2,6 +2,7 @@ const { User } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
 const { GraphQLScalarType } = require('graphql');
 const { Kind } = require('graphql/language');
+const { Mingle } = require('../models/MovieMingles');
 
 const resolvers = {
   Query: {
@@ -87,16 +88,19 @@ const resolvers = {
 
     saveMingle: async (parent, { input, userId }, context) => {
       console.log('Context user:', userId);
-      const updatedUser = await User.findByIdAndUpdate(
+
+      const user = await User.findByIdAndUpdate(
         userId,
         { $push: { movieMingles: input } },
-        { new: true }
-      ).populate('movieMingles');
-
-      return updatedUser;
+        { new: true, useFindAndModify: false }
+      );
+  
+      // The newly created mingle should be in user.movieMingles array
+      const newMingle = user.movieMingles[user.movieMingles.length - 1];
+  
+      return newMingle;
 
     },
-
     removeMingle: async (parent, { mingleId, userId }, context) => {
 
       const updatedUser = await User.findByIdAndUpdate(
@@ -110,6 +114,7 @@ const resolvers = {
     },
 
   },
+
 
   Date: new GraphQLScalarType({
     name: 'Date',

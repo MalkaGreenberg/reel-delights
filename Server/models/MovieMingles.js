@@ -1,4 +1,4 @@
-const {Schema, Types} = require('mongoose');
+const {Schema, Types, mongoose} = require('mongoose');
 
 const inviteSchema = new Schema({
     userId: {
@@ -40,6 +40,6 @@ const inviteSchema = new Schema({
     timestamps: true,
   });
   
-//    const Mingle = mongoose.model('Mingle', mingleSchema);
+   const Mingle = mongoose.model('Mingle', mingleSchema);
   
-  module.exports = mingleSchema;
+  module.exports = {mingleSchema, Mingle};

@@ -16,7 +16,12 @@ import '../styles/movieMingle.css'; // Import your CSS file
 const MingleCard = ({ mingle }) => {
   const { _id, movie, time } = mingle;
 
-  const [removeMingleMutation] = useMutation(REMOVE_MINGLE);
+  const [removeMingleMutation] = useMutation(REMOVE_MINGLE, {
+    refetchQueries: [
+      GET_MINGLES_FOR_USER,
+      'getMingleById'
+    ]
+  });
 
   const handleDeleteClick = async () => {
     try {
@@ -30,7 +35,6 @@ const MingleCard = ({ mingle }) => {
       console.log(_id);
       console.log('Mingle removed:', removeMingle.removeMingle);
 
-      window.location.reload();
     } catch (error) {
       console.error('Error deleting mingle:', error);
     }

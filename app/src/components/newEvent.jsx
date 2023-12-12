@@ -23,9 +23,9 @@ const NewEvent = ({ onClose, onReloadData }) => {
 
   const { loading, data } = useQuery(GET_ALL_USERS);
   const usersList = data?.getUsers || [];
-  console.log(usersList);
+  // console.log(usersList);
 
-  useEffect(() => {}, []);
+  useEffect(() => { }, []);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -73,21 +73,24 @@ const NewEvent = ({ onClose, onReloadData }) => {
       userId: user.data._id,
     };
 
-    const { data: addMingleData } = await addMingle({
+    const { loading, data} = await addMingle({
       variables: movieMingle,
     });
 
-    console.log('Mingle added:', addMingleData.addMingle);
+    const mingleId = data.saveMingle._id;
+
+    // const newMingleId = data.saveMingle.movieMingles[0];
+    console.log('Mingle added:', data.saveMingle._id);
 
     const emailFriends = async () => {
       try {
         const user = Auth.getProfile();
         const userEmail = user.data.email;
-    
+
         await Promise.all(
           selectedFriends.map(async (friendId) => {
             const friend = usersList.find((_user) => _user._id === friendId);
-    
+
             const emailResponse = await fetch('/api/email/send-email', {
               method: 'POST',
               headers: {
@@ -96,10 +99,11 @@ const NewEvent = ({ onClose, onReloadData }) => {
               body: JSON.stringify({
                 to: `${friend.email}`,
                 subject: 'Invitation to Movie Mingle',
-                text: `Hi ${friend.username}, you've been invited to a Movie Mingle event on ${selectedDate}. Check it out!`,
+                text: `Hi ${friend.username}, you've been invited to a Movie Mingle event on ${selectedDate}.
+                 Check it out! https://reel-delights.onrender.com/mingle/${mingleId}`,// if you are testing on local change the path
               }),
             });
-    
+
             const emailData = await emailResponse.json();
             console.log('Email sent:', emailData);
           })
@@ -107,7 +111,7 @@ const NewEvent = ({ onClose, onReloadData }) => {
       } catch (error) {
         console.error('Error sending emails:', error);
       }
-    };    
+    };
 
     await emailFriends();
 
