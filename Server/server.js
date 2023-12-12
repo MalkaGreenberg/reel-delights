@@ -5,6 +5,7 @@ const path = require('path');
 const db = require('./config/connection');
 const { typeDefs, resolvers } = require('./schemas'); // Import your GraphQL schema and resolvers
 const { authMiddleware } = require("./utils/auth");
+const { sendEmail } = require('./emailModule');
 
 const PORT = process.env.PORT || 3001;
 
@@ -19,6 +20,21 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+// Email sending endpoint
+app.post('/api/email/send-email', async (req, res) => {
+  try {
+    const { to, subject, text } = req.body;
+
+    // Use your email sending logic here
+    await sendEmail(to, subject, text);
+
+    res.json({ success: true, message: 'Email sent successfully' });
+  } catch (error) {
+    console.error('Error sending email:', error);
+    res.status(500).json({ success: false, message: 'Internal server error' });
+  }
+});
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../app/dist')));

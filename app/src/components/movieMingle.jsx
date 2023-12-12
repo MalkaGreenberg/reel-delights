@@ -66,7 +66,7 @@ const MingleApp = () => {
     setReloadData(!reloadData); // Toggle the state to trigger a reload
     setModalIsOpen(false); // Close the modal
 
-    window.location.reload();
+    // window.location.reload();
   };
 
   const user = Auth.getProfile();
