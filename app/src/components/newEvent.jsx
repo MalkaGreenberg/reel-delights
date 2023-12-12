@@ -3,7 +3,7 @@ import MovieSearch from './MovieSearch';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../styles/new-event.css';
-import { GET_ALL_USERS } from '../utils/queries';
+import { GET_ALL_USERS, GET_MINGLES_FOR_USER } from '../utils/queries';
 import { ADD_MINGLE } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
 import Select from 'react-dropdown-select';
@@ -12,7 +12,13 @@ import Auth from '../utils/auth';
 const NewEvent = ({ onClose, onReloadData }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedFriends, setSelectedFriends] = useState([]);
-  const [addMingle, error] = useMutation(ADD_MINGLE);
+  const [addMingle, error] = useMutation(ADD_MINGLE, {
+    refetchQueries: [
+      GET_MINGLES_FOR_USER,
+      'getMingleById'
+    ]
+  });
+
   const [selectedMovies, setSelectedMovies] = useState('');
 
   const { loading, data } = useQuery(GET_ALL_USERS);
