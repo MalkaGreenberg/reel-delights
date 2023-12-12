@@ -1,10 +1,11 @@
 // MovieMingleDetails.js
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { GET_MINGLE_BY_ID } from '../utils/queries';
 import { useQuery } from "@apollo/client";
 import Countdown from 'react-countdown';
 import Sidebar from './Sidebar';
+import clock from "../assets/countdown-clock.png";
 
 const MingleDetails = () => {
   const { mingleId } = useParams();
@@ -35,25 +36,82 @@ const MingleDetails = () => {
       return <p>Event has already occurred</p>;
     } else {
       return (
-        <div>
-          <p>{days} days, {hours} hours, {minutes} minutes, {seconds} seconds</p>
+        <div className="custom-countdown">
+          <div>
+            <img className='countdown-clock-img' src={clock} alt="High Resolution Clock Png Clipart" />
+          </div>
+          <div className="countdown-section">
+            <div className="countdown-item">
+              <span>{days}</span>
+              <p>Days</p>
+            </div>
+            <div className="countdown-item">
+              <span>{hours}</span>
+              <p>Hours</p>
+            </div>
+          </div>
+          <div className="divider"><h1></h1></div>
+          <div className="countdown-section">
+            <div className="countdown-item">
+              <span>{minutes}</span>
+              <p>Minutes</p>
+            </div>
+            <div className="countdown-item">
+              <span>{seconds}</span>
+              <p>Seconds</p>
+            </div>
+          </div>
         </div>
       );
     }
   };
+
+  // Use state to store the additional movie details from the API response
+  const [additionalDetails, setAdditionalDetails] = useState(null);
+
+  useEffect(() => {
+    // Function to fetch additional movie details from the OMDB API
+    const fetchAdditionalDetails = async () => {
+      try {
+        const response = await fetch(`https://www.omdbapi.com/?t=${mingle.movie.title}&apikey=b5dd3f40`);
+        const data = await response.json();
+
+        // Extract and set the relevant details to state
+        setAdditionalDetails({
+          genre: data.Genre,
+          plot: data.Plot,
+          rated: data.Rated,
+        });
+      } catch (error) {
+        console.error('Error fetching additional details:', error);
+      }
+    };
+
+    // Call the function
+    fetchAdditionalDetails();
+  }, [mingle.movie.title]); 
 
   return (
     <div className="mingle-details-container">
       <div className="sidebar-container">
         <Sidebar />
       </div>
-      <div className="content-container">
-        <h2>{mingle.movie.title}</h2>
-        <Countdown
-          date={eventTime}
-          renderer={CountdownRenderer}
-        />
-        {/* Display other Mingle details as needed */}
+      <div className='details-container2'>
+        <h1 className="page-title">{mingle.movie.title}</h1>
+        <div className="content-container">
+          <div className='movie-container'>
+            <img src={mingle.movie.image} alt={mingle.movie.title} />
+            <div className='movie-details'>
+              <div className='detail'><h2>Genre: </h2><h3>{additionalDetails?.genre}</h3></div>
+              <div className='detail' ><h2>Rated: </h2><h3>{additionalDetails?.rated}</h3></div>
+              <div className='detail'><h2>Plot: </h2><h3>{additionalDetails?.plot}</h3></div>
+            </div>
+          </div>
+          <Countdown className='countdown'
+            date={eventTime}
+            renderer={CountdownRenderer}
+          />
+        </div>
       </div>
     </div>
   );
