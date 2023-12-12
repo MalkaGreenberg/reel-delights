@@ -80,3 +80,16 @@ body {
 .mingle-card p {
   color: #555;
 }
+
+.mingle-details-container {
+  display:flex;
+}
+
+.sider-container {
+  width: 200px;
+}
+
+.content-container {
+  flex: 1;
+  margin-left:20px;
+}
