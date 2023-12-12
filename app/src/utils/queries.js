@@ -22,6 +22,7 @@ export const GET_ALL_USERS = gql`
     getUsers {
       _id
       username
+      email
     }
   }
 `;

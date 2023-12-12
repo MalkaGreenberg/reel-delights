@@ -34,7 +34,8 @@ const resolvers = {
       // Assuming the user ID is available in context.user._id
       const users = await User.find()
         .select("username")
-        .populate("username");
+        .populate("username")
+        .populate("email");
 
       return users ? users : [];
       // }

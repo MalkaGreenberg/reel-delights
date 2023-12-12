@@ -35,9 +35,9 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <Sidebar />
+      
       <main className="content">
-        <header>
+      <Sidebar />  <header>
           <h1>Movie Mingles Dashboard</h1>
         </header>
 
