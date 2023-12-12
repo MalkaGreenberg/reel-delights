@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-const mingleSchema = require('./MovieMingles');
+const  {mingleSchema} = require('./MovieMingles');
 
 const userSchema = new Schema(
   {
