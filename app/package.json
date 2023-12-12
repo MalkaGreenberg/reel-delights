@@ -25,7 +25,8 @@
     "react-dropdown-select": "^4.11.0",
     "react-icons": "^4.12.0",
     "react-modal": "^3.16.1",
-    "react-router-dom": "^6.20.1"
+    "react-router-dom": "^6.20.1",
+    "react-countdown": "^2.3.5"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
