@@ -6,6 +6,7 @@ import Dashboard from "./components/dashboard";
 import MovieMingle from './components/movieMingle';
 import Signup from './components/signup';
 import NewEvent from './components/newEvent';
+import MingleDetails from './components/mingleDetails';
 // import LoginPage from './components/newEvent';
 // import LoginPage from './components/movieMingle';
 // import FacebookLoginButton from './components/FacebookLogin';
@@ -32,10 +33,11 @@ const App = () => {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/movieMingles" element={<MovieMingle />} />
+          <Route path="/movieMingles" element={<Dashboard />} />
           <Route path="/dashboard" element={<MovieMingle />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/createMingle" element={<NewEvent />} />
+          <Route path="/mingle/:mingleId" element={<MingleDetails />} />
         </Routes>
       </Router>
     </ApolloProvider>

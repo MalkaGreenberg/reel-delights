@@ -7,7 +7,7 @@ import { REMOVE_MINGLE } from '../utils/mutations';
 import { useQuery, useMutation } from '@apollo/client';
 import Modal from 'react-modal';
 import Sidebar from './Sidebar';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import NewEvent from './newEvent';
 // import { Button, Spin } from 'antd'; // Make sure the import is correct
 
@@ -23,7 +23,7 @@ const MingleCard = ({ mingle }) => {
       const user = Auth.getProfile();
       const userId = user.data._id;
 
-      const {data: removeMingle} = await removeMingleMutation({
+      const { data: removeMingle } = await removeMingleMutation({
         variables: { mingleId: _id, userId: userId },
       });
 
@@ -39,7 +39,9 @@ const MingleCard = ({ mingle }) => {
   return (
     <div className='mingle-card'>
       <h3 className="cardTitle">{movie.title}</h3>
-      <img src={movie.image} alt={movie.title} className="card-image" />
+      <Link to={`/mingle/${_id}`}>
+        <img src={movie.image} alt={movie.title} className="card-image" />
+      </Link>
       <p>{new Date(time).toLocaleString()}</p>
       <button className='trashCan' onClick={handleDeleteClick} >🗑️DELETE </button>
     </div>

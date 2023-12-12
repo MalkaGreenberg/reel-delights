@@ -28,7 +28,7 @@ export const GET_ALL_USERS = gql`
 
 export const GET_MINGLE_BY_ID = gql`
   query getMingleById($mingleId: ID!) {
-    mingleById(mingleId: $mingleId) {
+    getMingleById(mingleId: $mingleId) {
       _id
       movie {
         title
