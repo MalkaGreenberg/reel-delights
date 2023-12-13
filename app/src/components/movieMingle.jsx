@@ -70,9 +70,22 @@ const MingleApp = () => {
 
   const handleReloadData = () => {
     setReloadData(!reloadData); // Toggle the state to trigger a reload
-    setModalIsOpen(false); 
+    setModalIsOpen(false);
 
   };
+
+
+  if (!Auth.loggedIn()) {
+    // If the user is not logged in, display a message and a link to the homepage
+    return (
+      <div >
+        <img className='svg' src="./movie.svg" alt="movie" />
+        <h1>You Are Not Logged In</h1>
+        <p>Please go to the <Link to="/">homepage</Link> and log in to access Movie Mingles.</p>
+      </div>
+
+    );
+  }
 
   const user = Auth.getProfile();
   const userId = user.data._id;
