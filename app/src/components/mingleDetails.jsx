@@ -8,8 +8,10 @@ import Sidebar from './Sidebar';
 import clock from "../assets/countdown-clock.png";
 
 const MingleDetails = () => {
+  const [additionalDetails, setAdditionalDetails] = useState(null);
   const { mingleId } = useParams();
   console.log(mingleId);
+
   const { loading, error, data } = useQuery(GET_MINGLE_BY_ID, {
     variables: { mingleId },
   });
@@ -66,30 +68,26 @@ const MingleDetails = () => {
     }
   };
 
-  // Use state to store the additional movie details from the API response
-  const [additionalDetails, setAdditionalDetails] = useState(null);
+  const fetchAdditionalDetails = async () => {
+    try {
+      const response = await fetch(`https://www.omdbapi.com/?t=${mingle.movie.title}&apikey=b5dd3f40`);
+      const data = await response.json();
 
-  useEffect(() => {
-    // Function to fetch additional movie details from the OMDB API
-    const fetchAdditionalDetails = async () => {
-      try {
-        const response = await fetch(`https://www.omdbapi.com/?t=${mingle.movie.title}&apikey=b5dd3f40`);
-        const data = await response.json();
+      // Update state only if the component is still mounted
 
-        // Extract and set the relevant details to state
-        setAdditionalDetails({
-          genre: data.Genre,
-          plot: data.Plot,
-          rated: data.Rated,
-        });
-      } catch (error) {
-        console.error('Error fetching additional details:', error);
-      }
-    };
+      setAdditionalDetails({
+        genre: data.Genre,
+        plot: data.Plot,
+        rated: data.Rated,
+      });
 
-    // Call the function
-    fetchAdditionalDetails();
-  }, [mingle.movie.title]); 
+    } catch (error) {
+      console.error('Error fetching additional details:', error);
+    }
+  };
+
+  fetchAdditionalDetails();
+
 
   return (
     <div className="mingle-details-container">
