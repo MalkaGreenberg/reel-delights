@@ -36,7 +36,7 @@ const Login = () => {
   };
 
   const handleSignup = () => {
-    navigate("/signup", { replace: true });
+    navigate("/signup", { replace: false });
   };
 
   const handleSubmit = async (event) => {

@@ -7,6 +7,7 @@ import MovieMingle from './components/movieMingle';
 import Signup from './components/signup';
 import NewEvent from './components/newEvent';
 import MingleDetails from './components/mingleDetails';
+import PageNotFound from './components/pageNotFound';
 // import LoginPage from './components/newEvent';
 // import LoginPage from './components/movieMingle';
 // import FacebookLoginButton from './components/FacebookLogin';
@@ -32,12 +33,13 @@ const App = () => {
       <Router>
         <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          {/* <Route path="/login" element={<LoginPage />} /> */}
           <Route path="/movieMingles" element={<MovieMingle />} />
           <Route path="/dashboard" element={<MovieMingle />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/createMingle" element={<NewEvent />} />
           <Route path="/mingle/:mingleId" element={<MingleDetails />} />
+          <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </Router>
     </ApolloProvider>
