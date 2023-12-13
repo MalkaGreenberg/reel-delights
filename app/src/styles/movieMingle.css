@@ -89,7 +89,99 @@ body {
   width: 200px;
 }
 
+.custom-countdown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #187a8e; /* Choose your background color */
+  color: black; /* Choose your text color */
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px; 
+  height: 350px;/* Set your desired width */
+}
+
+.countdown-section {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.countdown-clock-img {
+  width: 100px;
+  height: 115px;
+}
+
+.countdown-item {
+  text-align: center;
+  padding: 10px;
+}
+
+.countdown-item span {
+  font-size: 2em;
+  font-weight: bold;
+  display: block;
+}
+
+.countdown-item p {
+  margin: 0;
+  color:black;
+  font-size: 0.8em;
+}
+
+/* Divider line between sections */
+.divider {
+  height: 2px;
+  width: 100%;
+  background-color: black; /* Choose your divider color */
+  margin: 10px 0;
+}
+
+/* New CSS for movie details */
+.movie-container {
+  padding: 10px;
+  padding-top: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
 .content-container {
+  display: flex;
+  flex-wrap: wrap;
   flex: 1;
-  margin-left:20px;
+  margin-left:30px;
+}
+
+.movie-details {/* Take full width by default */
+  padding: 10px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail h2 {
+  text-decoration: underline;
+  margin-right: 15px;
+}
+
+.detail {
+  display: flex;
+  flex-direction: row;
+  padding-top: 15px ;
+}
+
+@media screen and (min-width: 600px) {
+  .movie-details {
+    flex: 0 0 calc(50% - 20px); /* Display movie details in a box when the screen is big enough */
+    margin-left: 20px;
+  }
+}
+
+.details-container2 {
+  display: flex;
+  display: inline;
+  justify-content: center;
+  height: auto;
 }
