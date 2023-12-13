@@ -10,38 +10,42 @@ Presenting Reel Delight: the premier app for orchestrating unforgettable Movie M
 * [Project Information](#project-information)<br>
 * [Installation](#installation)<br>
 * [Usage](#usage)<br>
-* [Tests](#tests)<br>
-* [Contact Information](#contact-information)<br>
-* [License](#license)
+* [Contributers](#contributers)<br>
+* [Contact-us](#contact-us)
 
 ## Project Information
-* Java Script XML was utilized for file extensions and HTML element creation.
-* React was utilized to create user interfaces for our single page application.
-* Vite config was utilized to build the application 
-* Calandar component
-* Mutations, Graph QL, and state managment were used to create and modify data 
-
+The team of developers worked hard to utilize each members strengths!
+* Employed JavaScript XML for managing file extensions and crafting HTML elements.
+* Leveraged React to architect intuitive user interfaces within our single-page application.
+* Utilized Vite configuration for efficient application building.
+* Developed a custom Calendar component to track the countdown until the anticipated mingle event.
+* Implemented Mutations, GraphQL, and robust state management techniques to seamlessly create and modify data.
+* Integrated APIs for streamlined movie searches based on title, genre, and more.
+* Deployed the application to render for the final product
+* Employed MongoDB in conjunction with Mongoose for defining schemas and populating initial data (seeds).
 
 
 ## Installation
-https://reel-delights.onrender.com/
+Deployed site- https://reel-delights.onrender.com/
 
 
 ## Usage
-![Screenshot 2023-12-11 123537](https://github.com/BrielleBroadt/React-Portfolio/assets/135186013/3c357d9f-a094-419d-be78-68a76af97175)
+Simply navigate to deployed website. Create your account and let the mingles begin!
+![movie mingle 1](https://github.com/MalkaGreenberg/reel-delights/assets/135186013/a9d28a06-ef8b-4a0f-9e38-813bbf131ba3)
+![movie mingle 2](https://github.com/MalkaGreenberg/reel-delights/assets/135186013/0f7e28d1-a5b8-421d-9cbc-184a0c32fa5b)
+![movie mingle 3](https://github.com/MalkaGreenberg/reel-delights/assets/135186013/dd47d224-029b-42df-9d85-1f03374e7f3b)
+
+
+## Contributers
+Anthony LittleJohn - Ben Birdsall - Brielle Broadt - Malka Greenberg 
 
 
 
 
-
-## Tests
-
-
-
-## Contact Information
-Find this team on github! Repo is below
-https://github.com/MalkaGreenberg/reel-delights
-
-
-## License 
-
+## Contact us
+* Anthony LittleJohn - https://github.com/ant05man
+* Ben Birdsall - https://github.com/BenThere6
+* Brielle Broadt - https://github.com/BrielleBroadt
+* Malka Greenberg - https://github.com/MalkaGreenberg
+* Find this team on github! Repo is below
+Repo for Reel-Delights https://github.com/MalkaGreenberg/reel-delights
