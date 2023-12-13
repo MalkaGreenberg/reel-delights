@@ -35,7 +35,14 @@ const MingleDetails = () => {
   const CountdownRenderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
       // If the event has passed, display a message
-      return <p>Event has already occurred</p>;
+      return <div className="custom-countdown">
+        <div>
+          <img className='countdown-clock-img' src={clock} alt="High Resolution Clock Png Clipart" />
+        </div>
+        <div>
+          <h3>Event has already occurred</h3>
+        </div>
+      </div>;
     } else {
       return (
         <div className="custom-countdown">
